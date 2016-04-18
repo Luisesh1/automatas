@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <title>Automatas</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <nav>
+    <div class="nav-wrapper">
+      <a href="<%=root_path%>" class="brand-logo">Compilador</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <%=render 'partials/menu'%>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <%=render 'partials/menu'%>
+      </ul>
+    </div>
+  </nav>
+<%= yield %>
+
+</body>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+</html>
