@@ -3,6 +3,10 @@ class CodesController < ApplicationController
   def scanner 
       @code=Code.new
       @cad=params[:contenido]
+
+      unless @cad.nil? 
+        
+      end
       unless @cad.nil? 
         @cad=@cad.split(' ')
       end
@@ -79,5 +83,24 @@ class CodesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
       params.require(:code).permit(:titulo, :codigo)
+    end
+    def scan (cadena)
+      nivel = 0
+      tokens=[[],[]]
+       tabla = [["1","a","+","=",nil],
+               [  2,  3,  4,  5, nil],
+               [  2, nil,nil,nil,"digito"],
+               [ nil, 3,nil,nil,"letra"],
+               [ nil,nil,nil,nil,"+"],
+               [ nil,nil,nil,6,"="],
+               [ nil,nil,nil,nil,"=="]] 
+
+        for i in 0..cadena.length
+          c= cadena[i]
+          puts c
+          if c=="o"
+           i=i+1
+         end
+        end
     end
 end

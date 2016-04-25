@@ -1,0 +1,10 @@
+v= "telefono hh"
+unless v.empty?
+			tuplas=[]
+	  		v.split(" ").each do |p|
+	  			puts p.strip
+	  		end
+		  	return tuplas.uniq!
+		else
+		  	
+		end
