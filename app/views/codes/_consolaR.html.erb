@@ -1,11 +1,11 @@
 
 <div id= "consola" class="consola">
-	<%unless @cad.nil?%>
-		<%@cad.each do |c|%>
-			<%=c%><br>
+	<%unless @tock.nil?%>
+		<%@tock.each do |c|%>
+			<%="#{c[:valor]} ======> #{c[:tipo]}"%><br>
 		<%end%>
 	<%end%>
 </div>
-<%unless @cad.nil?%>
-	<h4>Numero de palabras: <%=@cad.count%></h4>		
+<%unless @tock.nil?%>
+	<h4>Numero de tokens: <%=@tock.count%></h4>		
 <%end%>

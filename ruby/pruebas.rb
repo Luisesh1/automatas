@@ -3,13 +3,17 @@ def scan (cadena)
   nivel = 1
   acomulado=""
   tokens=[[],[]]
-   @tabla = [["1","a","+","=",nil],
-           [  2,  3,  4,  5, nil],
-           [  2, nil,nil,nil,"digito"],
-           [ nil, 3,nil,nil,"letra"],
-           [ nil,nil,nil,nil,"+"],
-           [ nil,nil,nil,6,"="],
-           [ nil,nil,nil,nil,"=="]] 
+   @tabla = [[/\d/,/[a-zA-Z]/,/\+/,/=/,/{/,/}/,/\s/,/;/, nil],
+           [    2,      3,      4,  5  ,7,  8,  9,   10,  nil],
+           [    2,     nil,    nil,nil,nil,nil,nil, nil, "numero"],
+           [   nil,     3,     nil,nil,nil,nil,nil, nil, "ID"],
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, "+"],
+           [   nil,    nil,    nil, 6 ,nil,nil,nil, nil, "="],
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, "=="],
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, "{"],
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, "}"],
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, nil], 
+           [   nil,    nil,    nil,nil,nil,nil,nil, nil, ";"]] 
     i=0
     while (i<cadena.length)
       c= cadena[i]
@@ -17,14 +21,9 @@ def scan (cadena)
           puts "se encontro caracter invalido"
           return
       end
-      puts "nivel #{nivel}"
-      puts "col #{pos(c)}"
       if @tabla[nivel][pos(c)].nil? 
-        #puts acomulado 
-        #puts @tabla[2][5]
-        tokens.push(acomulado,@tabla[nivel][@tabla[nivel].length-1])
+        tokens.push(acomulado,@tabla[nivel][@tabla[nivel].length-1]) unless @tabla[nivel][@tabla[nivel].length-1].nil?
         acomulado=""
-        puts "toquen encontrado"
         nivel=1
       else
           nivel=@tabla[nivel][pos(c)]
@@ -39,8 +38,9 @@ end
   posi=0
   col = @tabla.length-1
   @tabla[0].each do |l|
-    if l==c
+    unless c.match(l).nil?
       col=posi 
+      return col
     end
     posi+=1
   end
@@ -48,12 +48,13 @@ end
 end
 def isValido(l)
     @tabla[0].each do |c|
-        if c==l
+        unless c.match(l).nil?
             return true
         end
     end
     return false
 end
 
-    scan ("111aaaa11111111aaaa+===aaaa")
+   scan ("a = b;")
     #puts pos("1")
+    

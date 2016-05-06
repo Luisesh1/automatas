@@ -1,1 +1,4 @@
+<%if @tock.nil?%>
+    Materialize.toast('cadena invalida', 3000, 'rounded');
+<%end%>
 $("#contenedor_consola").html(" <%= escape_javascript render 'consolaR'%>");

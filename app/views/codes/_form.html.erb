@@ -20,7 +20,7 @@
         </div>
         <div class="field">
           <%= f.label :codigo %><br>
-          <%= f.text_area :codigo,'ng-model':'texto'%>
+          <%= f.text_area :codigo,'ng-model':'texto','ng-init':"texto='#{@code.codigo}'"%>
         </div>
        
         <div class="actions">
